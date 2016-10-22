@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="forecast-restAPI:war">
+    <output-path>$PROJECT_DIR$/forecast-restAPI/target</output-path>
+    <root id="archive" name="restAPI.war">
+      <element id="artifact" artifact-name="forecast-restAPI:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="forecast:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/forecast_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="forecast/ejb/EJB" />
+      <element id="module-output" name="forecast" />
+    </root>
+  </artifact>
+</component>

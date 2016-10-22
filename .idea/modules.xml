@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/forecast.iml" filepath="$PROJECT_DIR$/forecast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/forecast-dataService/forecast-dataService.iml" filepath="$PROJECT_DIR$/forecast-dataService/forecast-dataService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/forecast-dataService/forecast-dbService.iml" filepath="$PROJECT_DIR$/forecast-dataService/forecast-dbService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/forecast-restAPI/forecast-restAPI.iml" filepath="$PROJECT_DIR$/forecast-restAPI/forecast-restAPI.iml" />
+    </modules>
+  </component>
+</project>
