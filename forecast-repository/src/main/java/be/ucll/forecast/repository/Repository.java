@@ -12,7 +12,6 @@ import java.util.Map;
  * Created by tompl on 10/18/2016.
  */
 
-@Local
 public interface Repository {
     void save(Forecast forecast);
     Observation find(String name, String date);

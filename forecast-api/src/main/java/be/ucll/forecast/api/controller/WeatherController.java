@@ -3,6 +3,7 @@ package be.ucll.forecast.api.controller;
 import be.ucll.forecast.api.service.ApiService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.Response;
 public class WeatherController {
 
 	@EJB
+	//@Inject
 	ApiService apiService;
 
 	/*

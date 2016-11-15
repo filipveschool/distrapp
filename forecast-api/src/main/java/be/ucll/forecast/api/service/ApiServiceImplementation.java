@@ -9,7 +9,11 @@ import service.OpenWeatherService;
 import service.OpenWeatherServiceImplementation;
 
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
@@ -18,10 +22,14 @@ import java.util.Map;
  * Created by tompl on 11/11/2016.
  */
 
+
 @Stateless
 public class ApiServiceImplementation implements ApiService {
 
-    Repository repository = new LocalRepositoryStrategy();
+    @EJB
+    Repository repository;
+
+    //Repository repository = new LocalRepositoryStrategy();
     OpenWeatherService openWeatherService = new OpenWeatherServiceImplementation();
 
     public Forecast getForecast(String location) {
@@ -36,7 +44,6 @@ public class ApiServiceImplementation implements ApiService {
         }
         return repository.findAll(location);
     }
-
 
     private String createDate(int pastdays){
         Calendar cal = Calendar.getInstance();

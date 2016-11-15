@@ -3,6 +3,7 @@ package be.ucll.forecast.repository;
 import be.ucll.forecast.domain.Forecast;
 import be.ucll.forecast.domain.Observation;
 
+import javax.ejb.Stateless;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Set;
  * Created by tompl on 11/12/2016.
  */
 
+@Stateless
 public class LocalRepositoryStrategy implements Repository {
 
     private Map<String, Forecast> forecasts;
