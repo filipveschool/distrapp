@@ -1,4 +1,4 @@
-package dao;
+package be.ucll.forecastJPA.dao;
 
 import javax.persistence.EntityManager;
 

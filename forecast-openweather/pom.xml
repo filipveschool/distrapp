@@ -25,16 +25,20 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>${maven.compiler.plugin.version}</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>${java.jdk.version}</source>
+                        <target>${java.jdk.version}</target>
                     </configuration>
                 </plugin>
                 <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>${maven.war.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
