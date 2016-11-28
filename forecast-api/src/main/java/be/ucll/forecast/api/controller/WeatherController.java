@@ -1,32 +1,52 @@
 package be.ucll.forecast.api.controller;
 
 import be.ucll.forecast.api.service.ApiService;
+import be.ucll.forecastJPA.dao.TemperatureDAO;
+import be.ucll.forecastJPA.model.Temperature;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collection;
 
-@Path("/weather")
+@Path ("/weather")
 public class WeatherController {
 
-	@EJB
-	//@Inject
-	ApiService apiService;
+
+    //@Inject
+    @EJB
+    ApiService apiService;
+
+    //private TemperatureDAO
+    //private BaseDAO = new TemperatureDAO();
+
+    private TemperatureDAO temperatureDAO;
+    //private TemperatureDAO temperatureDAO = new TemperatureDAO ();
+
+    public WeatherController() {
+        temperatureDAO = new TemperatureDAO ();
+        //	TemperatureDAO temperatureDAO = new TemperatureDAO ();
+    }
+
+    @GET
+    @Path ("/{param}")
+    @Produces (MediaType.APPLICATION_JSON)
+    public Response getForecast( @PathParam ("param") String location ) {
+        return Response.status ( 200 ).entity ( apiService.getForecast ( location ) ).build ();
+    }
 
 	/*
-	* EntryPoint to get a forecast
+    * EntryPoint to get a forecast
 	* */
 
-	@GET
-	@Path("/{param}")
-    @Produces(MediaType.APPLICATION_JSON)
-	public Response getForecast(@PathParam("param") String location) {
-		return Response.status(200).entity( apiService.getForecast(location) ).build();
-	}
+    @GET
+    @Path ("/locaties")
+    //@Produces (MediaType.APPLICATION_JSON)
+    public Collection<Temperature> getForecast2() {
+        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
+        temperatureDAO.close ();
+        return temperatures;
+    }
 
 }

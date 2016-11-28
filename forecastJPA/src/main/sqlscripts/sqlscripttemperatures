@@ -1,0 +1,10 @@
+CREATE TABLE APP.temperatures
+(
+    id INT PRIMARY KEY NOT NULL  GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    day DOUBLE,
+    minimum DOUBLE,
+   maximum DOUBLE
+);
+
+INSERT INTO TEMPERATURES (DAY, minimum, maximum)
+VALUES (1, 18, 25);

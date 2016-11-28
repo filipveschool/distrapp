@@ -24,7 +24,7 @@
         <maven.war.plugin.version>3.0.0</maven.war.plugin.version>
         <mysql.connector.java.version>6.0.5</mysql.connector.java.version>
         <org.hibernate.javax.persistence.version>1.0.0.Final-redhat-1</org.hibernate.javax.persistence.version>
-
+        <hibernate.core.version>5.2.5.Final</hibernate.core.version>
     </properties>
 
     <!-- Output to pom format -->
