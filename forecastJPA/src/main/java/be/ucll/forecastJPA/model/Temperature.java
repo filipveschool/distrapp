@@ -13,8 +13,11 @@ import java.io.Serializable;
  * Zodat we hierop ORM(=Object Relational Mapping) kunnen toepassen.
  */
 @Entity
-//@Table (name = "temperaturesjson")
-@Table (name = "TEMPERATURES")
+@NamedQueries ({
+        @NamedQuery (name = "Temperature.getAllTemperatures",
+                query = "select t from Temperature t")
+})
+@Table (name = "TEMPERATURES", schema = "APP")
 public class Temperature implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +40,10 @@ public class Temperature implements Serializable {
 
     public Temperature() {
 
+    }
+
+    public Temperature( int id ) {
+        setId ( id );
     }
 
     public int getId() {
@@ -70,5 +77,6 @@ public class Temperature implements Serializable {
     public void setMax( double max ) {
         this.max = max;
     }
+
 
 }

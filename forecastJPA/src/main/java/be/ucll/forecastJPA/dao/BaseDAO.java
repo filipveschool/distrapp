@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 /**
  * Created by filipve on 24/11/2016.
  */
-@Stateless
+//@Stateless
 public abstract class BaseDAO {
 
     protected static EntityManagerFactory emf;

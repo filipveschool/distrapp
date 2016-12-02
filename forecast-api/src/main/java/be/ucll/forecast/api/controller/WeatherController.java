@@ -40,13 +40,13 @@ public class WeatherController {
     * EntryPoint to get a forecast
 	* */
 
-    @GET
-    @Path ("/locaties")
-    //@Produces (MediaType.APPLICATION_JSON)
-    public Collection<Temperature> getForecast2() {
-        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
-        temperatureDAO.close ();
-        return temperatures;
-    }
+//    @GET
+//    @Path ("/locaties")
+//    //@Produces (MediaType.APPLICATION_JSON)
+//    public Collection<Temperature> getForecast2() {
+//        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
+//        temperatureDAO.close ();
+//        return temperatures;
+//    }
 
 }
