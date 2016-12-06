@@ -1,6 +1,6 @@
 package be.ucll.forecastJPA.dao;
 
-import be.ucll.forecastJPA.model.Temperature;
+import be.ucll.forecast.domain.TemperatureRasp;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ import java.util.List;
 public class TemperatureDAO {
 
     // Injected database connection:
-    @PersistenceContext (unitName = "BeUcll")
+    @PersistenceContext(unitName = "BeUcll")
     private EntityManager em;
 
 //    public TemperatureDAO() {
@@ -28,46 +28,46 @@ public class TemperatureDAO {
 //    }
 
 
-    public List<Temperature> getTemperatures() {
+    public List<TemperatureRasp> getTemperatures() {
         //CriteriaBuilder cb = em.getCriteriaBuilder ();
         //CriteriaQuery<Temperature> criteriaQuery = cb.createQuery ( Temperature.class );
         //criteriaQuery.from ( Temperature.class );
         //TypedQuery<Temperature> temperatureTypedQuery = em.createQuery ( criteriaQuery );
-        TypedQuery<Temperature> temperatureTypedQuery = em.createQuery ( "SELECT t FROM Temperature t", Temperature.class );
-        return temperatureTypedQuery.getResultList ();
+        TypedQuery<TemperatureRasp> temperatureTypedQuery = em.createQuery("SELECT t FROM TemperatureRasp t", TemperatureRasp.class);
+        return temperatureTypedQuery.getResultList();
     }
 
-    public Temperature findById( int id ) {
-        CriteriaBuilder cb = em.getCriteriaBuilder ();
-        CriteriaQuery<Temperature> criteriaQuery = cb.createQuery ( Temperature.class );
-        Root<Temperature> root = criteriaQuery.from ( Temperature.class );
-        criteriaQuery.where ( cb.equal ( root.get ( "id" ), id ) );
-        TypedQuery<Temperature> temperatureTypedQuery = em.createQuery ( criteriaQuery );
+    public TemperatureRasp findById(int id) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<TemperatureRasp> criteriaQuery = cb.createQuery(TemperatureRasp.class);
+        Root<TemperatureRasp> root = criteriaQuery.from(TemperatureRasp.class);
+        criteriaQuery.where(cb.equal(root.get("id"), id));
+        TypedQuery<TemperatureRasp> temperatureTypedQuery = em.createQuery(criteriaQuery);
 
-        return temperatureTypedQuery.getSingleResult ();
+        return temperatureTypedQuery.getSingleResult();
     }
 
-    public void delete( Temperature temperature ) {
-        em.remove ( temperature );
+    public void delete(TemperatureRasp temperature) {
+        em.remove(temperature);
     }
 
-    public void update( Temperature temperature ) {
-        em.merge ( temperature );
+    public void update(TemperatureRasp temperature) {
+        em.merge(temperature);
     }
 
-    public void save( Temperature temperature ) {
-        em.persist ( temperature );
+    public void save(TemperatureRasp temperature) {
+        em.persist(temperature);
     }
 
     /**
      * example
      */
     public void createTemperature() {
-        final Temperature temperature = new Temperature ();
-        temperature.setDay ( 1 );
-        temperature.setMin ( 2 );
-        temperature.setMax ( 4 );
-        em.persist ( temperature );
+        final TemperatureRasp temperature = new TemperatureRasp();
+        temperature.setDay(1);
+        temperature.setMin(2);
+        temperature.setMax(4);
+        em.persist(temperature);
     }
 
 //    @Override

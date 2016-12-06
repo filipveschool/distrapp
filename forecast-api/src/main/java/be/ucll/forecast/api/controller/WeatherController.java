@@ -2,7 +2,6 @@ package be.ucll.forecast.api.controller;
 
 import be.ucll.forecast.api.service.ApiService;
 import be.ucll.forecastJPA.dao.TemperatureDAO;
-import be.ucll.forecastJPA.model.Temperature;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;

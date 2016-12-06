@@ -1,8 +1,6 @@
-package be.ucll.forecastJPA.model;
+package be.ucll.forecast.domain;
 
 import com.fasterxml.jackson.core.SerializableString;
-import org.hibernate.annotations.Tables;
-import org.hibernate.annotations.Tables;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "HUMIDITY")
-public class Humidity implements Serializable {
+public class HumidityRasp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,7 +20,7 @@ public class Humidity implements Serializable {
     @Column(name = "ID")
     private int id;
 
-    public Humidity() {
+    public HumidityRasp() {
 
     }
 

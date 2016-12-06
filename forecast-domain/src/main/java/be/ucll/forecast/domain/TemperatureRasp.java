@@ -1,4 +1,4 @@
-package be.ucll.forecastJPA.model;
+package be.ucll.forecast.domain;
 
 
 import javax.persistence.*;
@@ -13,12 +13,12 @@ import java.io.Serializable;
  * Zodat we hierop ORM(=Object Relational Mapping) kunnen toepassen.
  */
 @Entity
-@NamedQueries ({
-        @NamedQuery (name = "Temperature.getAllTemperatures",
-                query = "select t from Temperature t")
-})
+//@NamedQueries ({
+//        @NamedQuery (name = "Temperature.getAllTemperatures",
+//                query = "select t from Temperature t")
+//})
 @Table (name = "TEMPERATURES", schema = "APP")
-public class Temperature implements Serializable {
+public class TemperatureRasp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,11 +38,11 @@ public class Temperature implements Serializable {
     @Column (name = "MAXIMUM")
     private double max;
 
-    public Temperature() {
+    public TemperatureRasp() {
 
     }
 
-    public Temperature( int id ) {
+    public TemperatureRasp( int id ) {
         setId ( id );
     }
 

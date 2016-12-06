@@ -1,7 +1,7 @@
 package be.ucll.forecast.api.controller;
 
+import be.ucll.forecast.domain.TemperatureRasp;
 import be.ucll.forecastJPA.dao.TemperatureDAO;
-import be.ucll.forecastJPA.model.Temperature;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by filipve on 28/11/2016.
  */
-@Path ("/weatherjpa")
+@Path("/weatherjpa")
 public class WeatherJPAController {
 
 
@@ -24,14 +24,16 @@ public class WeatherJPAController {
 	* */
 
     @GET
-    @Path ("/locaties")
+    @Path("/locaties")
     //@Produces (MediaType.APPLICATION_JSON)
 //    public Collection<Temperature> getForecast2() {
-    public List<Temperature> getForecast() {
+    public List<TemperatureRasp> getForecast() {
 //        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
-        List<Temperature> temperatures = temperatureDAO.getTemperatures ();
+        List<TemperatureRasp> temperatures = temperatureDAO.getTemperatures();
         //temperatureDAO.close ();
         return temperatures;
     }
+
+
 
 }
