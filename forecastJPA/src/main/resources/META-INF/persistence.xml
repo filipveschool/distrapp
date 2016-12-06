@@ -9,11 +9,15 @@
         <jta-data-source>jdbc/forecast</jta-data-source>
         <!--<jta-data-source>jdbc/__default</jta-data-source>-->
         <class>be.ucll.forecastJPA.model.Temperature</class>
+        <class>be.ucll.forecastJPA.model.Humidity</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
         <properties>
             <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
             <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <!--<property name="hbm2ddl.auto" value="update"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
 
         </properties>
     </persistence-unit>
@@ -22,6 +26,7 @@
     <persistence-unit name="BeUcll-JSE">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>be.ucll.forecastJPA.model.Temperature</class>
+        <class>be.ucll.forecastJPA.model.Humidity</class>
         <properties>
             <!--<property name="hibernate.dialect" value="com.mysema.query.jpa.support.ExtendedDerbyDialect" />-->
             <!--<property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/forecast;create=true"/>-->

@@ -18,15 +18,8 @@ public class WeatherController {
     @EJB
     ApiService apiService;
 
-    //private TemperatureDAO
-    //private BaseDAO = new TemperatureDAO();
-
-    private TemperatureDAO temperatureDAO;
-    //private TemperatureDAO temperatureDAO = new TemperatureDAO ();
 
     public WeatherController() {
-        temperatureDAO = new TemperatureDAO ();
-        //	TemperatureDAO temperatureDAO = new TemperatureDAO ();
     }
 
     @GET
@@ -39,14 +32,5 @@ public class WeatherController {
 	/*
     * EntryPoint to get a forecast
 	* */
-
-//    @GET
-//    @Path ("/locaties")
-//    //@Produces (MediaType.APPLICATION_JSON)
-//    public Collection<Temperature> getForecast2() {
-//        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
-//        temperatureDAO.close ();
-//        return temperatures;
-//    }
 
 }

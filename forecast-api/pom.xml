@@ -33,6 +33,7 @@
             <artifactId>forecast-openweather</artifactId>
             <version>1.0</version>
         </dependency>
+
         <dependency>
             <groupId>be.ucll.forecast</groupId>
             <artifactId>forecastJPA</artifactId>

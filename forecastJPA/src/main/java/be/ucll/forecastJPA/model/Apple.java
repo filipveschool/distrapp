@@ -1,16 +1,12 @@
 package be.ucll.forecastJPA.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by filipve on 28/11/2016.
  */
 @Entity
+@Table(name = "APPLE")
 public class Apple {
     @Id
     @GeneratedValue
