@@ -21,6 +21,7 @@ import java.io.Serializable;
 public class TemperatureRasp implements Serializable {
 
 
+
     private static final long serialVersionUID = 1L;
 
     @Id
