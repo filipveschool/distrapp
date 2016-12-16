@@ -9,6 +9,7 @@
     <version>1.0</version>
 
     <properties>
+
         <dependency.locations.enabled>false</dependency.locations.enabled>
         <maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
         <maven.site.plugin.version>3.3</maven.site.plugin.version>
@@ -22,9 +23,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.war.plugin.version>3.0.0</maven.war.plugin.version>
+        <!-- JPA -->
         <mysql.connector.java.version>6.0.5</mysql.connector.java.version>
+        <!-- Hibernate -->
         <org.hibernate.javax.persistence.version>1.0.0.Final-redhat-1</org.hibernate.javax.persistence.version>
         <hibernate.core.version>5.2.5.Final</hibernate.core.version>
+        <!-- beveiliging -->
+
+
     </properties>
 
     <!-- Output to pom format -->
