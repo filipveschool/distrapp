@@ -2,7 +2,9 @@ package be.ucll.forecast.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Created by filipve on 28/11/2016.
@@ -17,68 +19,94 @@ import java.io.Serializable;
 //        @NamedQuery (name = "Temperature.getAllTemperatures",
 //                query = "select t from Temperature t")
 //})
-@Table (name = "TEMPERATURES", schema = "APP")
+@Table (name = "TEMPERATURES")
 public class TemperatureRasp implements Serializable {
-
-
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private int id;
+    private Integer id;
 
-    @Column (name = "DAY")
-    private double day;
+    @NotNull (message = "{NotNull.Temperature.datetime}")
+    @Column (name = "dateTime", unique = true)
+    private LocalDateTime dateTime;
+
+    //@Column (name = "dayofweek")
+    //private double day;
 
     //private double
 
-    @Column (name = "MINIMUM")
-    private double min;
+    @Column (name = "minimumtemperature")
+    private double minTemp;
 
-    @Column (name = "MAXIMUM")
-    private double max;
+    @Column (name = "maximumtemperature")
+    private double maxTemp;
+
+    @Column (name = "tempdata")
+    private double tempData;
 
     public TemperatureRasp() {
 
     }
 
-    public TemperatureRasp( int id ) {
-        setId ( id );
+    public TemperatureRasp( double tempData ) {
+        setDateTime ( LocalDateTime.now () );
+        setTempData ( tempData );
     }
 
-    public int getId() {
+    public TemperatureRasp( double tempData, LocalDateTime dateTime ) {
+        setDateTime ( dateTime );
+        setTempData ( tempData );
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId( int id ) {
+    public void setId( Integer id ) {
         this.id = id;
     }
 
-    public double getDay() {
-        return day;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDay( double day ) {
-        this.day = day;
+    public void setDateTime( LocalDateTime dateTime ) {
+        this.dateTime = dateTime;
     }
 
-    public double getMin() {
-        return min;
+//    public double getDay() {
+//        return day;
+//    }
+//
+//    public void setDay( double day ) {
+//        this.day = day;
+//    }
+
+    public double getMinTemp() {
+        return minTemp;
     }
 
-    public void setMin( double min ) {
-        this.min = min;
+    public void setMinTemp( double minTemp ) {
+        this.minTemp = minTemp;
     }
 
-    public double getMax() {
-        return max;
+    public double getMaxTemp() {
+        return maxTemp;
     }
 
-    public void setMax( double max ) {
-        this.max = max;
+    public void setMaxTemp( double maxTemp ) {
+        this.maxTemp = maxTemp;
     }
 
+    public double getTempData() {
+        return tempData;
+    }
+
+    public void setTempData( double tempData ) {
+        this.tempData = tempData;
+    }
 
 }

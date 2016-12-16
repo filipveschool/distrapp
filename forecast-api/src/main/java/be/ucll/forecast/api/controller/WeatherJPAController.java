@@ -2,7 +2,7 @@ package be.ucll.forecast.api.controller;
 
 import be.ucll.forecast.domain.Temperature;
 import be.ucll.forecast.domain.TemperatureRasp;
-import be.ucll.forecastJPA.dao.TemperatureDAO;
+import be.ucll.forecastJPA.dao.*;
 
 import javax.ejb.EJB;
 import javax.persistence.Entity;
@@ -18,8 +18,17 @@ public class WeatherJPAController {
 
 
     // Injected DAO EJB:
+    @EJB(mappedName="TemperatureRaspDB")
+    private TemperatureRaspDB temperatureDAO;
+    //private TemperatureDAO temperatureDAO;
+
     @EJB
-    TemperatureDAO temperatureDAO;
+    private HumidityRaspDB humidityDAO;
+    //private HumidityDAO humidityDAO;
+
+    @EJB
+    private UserDB userDB;
+
 
  	/*
     * EntryPoint to get a forecast
@@ -31,7 +40,7 @@ public class WeatherJPAController {
 //    public Collection<Temperature> getForecast2() {
     public List<TemperatureRasp> getForecast() {
 //        Collection<Temperature> temperatures = temperatureDAO.getTemperatures ();
-        List<TemperatureRasp> temperatures = temperatureDAO.getTemperatures();
+        List<TemperatureRasp> temperatures = temperatureDAO.getAllTemperatures ();
         //temperatureDAO.close ();
         return temperatures;
     }
@@ -40,11 +49,12 @@ public class WeatherJPAController {
     @Path("/savetemp")
     public void saveTemperature(){
         TemperatureRasp tr = new TemperatureRasp();
-        tr.setMin(1);
-        tr.setMax(2);
-        tr.setDay(1);
+        tr.setMinTemp (1);
+        tr.setMaxTemp ( 2 );
+        tr.setId (2);
+        //tr.setDay(1);
         //temperatureDAO.save( tr);
-        temperatureDAO.persist( tr);
+        temperatureDAO.addTemperature ( 2);
         //temperatureDAO.addTemp(tr);
     }
 

@@ -1,0 +1,1 @@
+INSERT INTO temperatures (DAY, minimum, maximum) VALUES (1, 18, 25);

@@ -65,3 +65,10 @@ http://mvnrepository.com/artifact/org.hibernate/hibernate-validator/5.4.0.Beta1
     <artifactId>hibernate-validator</artifactId>
     <version>5.4.0.Beta1</version>
 </dependency>
+
+
+## hulpsites
+
+- https://github.com/hantsy/ee7-sandbox/wiki/jpa-scripts
+- https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm
+
