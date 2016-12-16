@@ -39,6 +39,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.core.version}</version>
         </dependency>
+        <dependency>
+            <groupId>be.ucll.forecast</groupId>
+            <artifactId>forecast-domain</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
 

@@ -1,8 +1,10 @@
 package be.ucll.forecastJPA.dao;
 
+import be.ucll.forecast.domain.Temperature;
 import be.ucll.forecast.domain.TemperatureRasp;
 
 import javax.ejb.Stateless;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -37,6 +39,60 @@ public class TemperatureDAO {
         return temperatureTypedQuery.getResultList();
     }
 
+    public void persist(TemperatureRasp temperatureRasp) {
+        try {
+            //em.getTransaction().begin();
+            //em.persist(temperatureRasp);
+            em.merge(temperatureRasp);
+            em.flush();
+            //em.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            //em.getTransaction().rollback();
+        }
+    }
+
+    public void merge(TemperatureRasp tr) {
+        try {
+            em.getTransaction().begin();
+            em.persist(tr);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        }
+    }
+
+    public void remove(TemperatureRasp tr) {
+        try {
+            em.getTransaction().begin();
+            tr = em.find(TemperatureRasp.class, tr.getId());
+            em.remove(tr);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        }
+    }
+
+    public void removeById(int id) {
+        try {
+            TemperatureRasp tr = getById(id);
+            remove(tr);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<TemperatureRasp> findAll() {
+        return em.createQuery("From" + TemperatureRasp.class.getName()).getResultList();
+    }
+
+    public TemperatureRasp getById(int id) {
+        return em.find(TemperatureRasp.class, id);
+    }
+
     public TemperatureRasp findById(int id) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<TemperatureRasp> criteriaQuery = cb.createQuery(TemperatureRasp.class);
@@ -55,8 +111,18 @@ public class TemperatureDAO {
         em.merge(temperature);
     }
 
-    public void save(TemperatureRasp temperature) {
-        em.persist(temperature);
+    public TemperatureRasp addTemp(TemperatureRasp temp) {
+        System.out.println("Adding temp, temp id = " + temp.getId() + ", " +
+                "temp min = " + temp.getMin() +
+                ", temp max = " + temp.getMax() + ".");
+        return save(temp);
+    }
+
+    public TemperatureRasp save(TemperatureRasp temperature) {
+        em.merge(temperature);
+        //em.persist(temperature);
+        em.flush();
+        return temperature;
     }
 
     /**

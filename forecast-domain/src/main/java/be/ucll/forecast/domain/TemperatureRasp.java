@@ -23,8 +23,8 @@ public class TemperatureRasp implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
-    @Column (name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private int id;
 
     @Column (name = "DAY")
