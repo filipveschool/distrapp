@@ -20,6 +20,7 @@ import java.io.Serializable;
 @Table (name = "TEMPERATURES", schema = "APP")
 public class TemperatureRasp implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
 
     @Id
