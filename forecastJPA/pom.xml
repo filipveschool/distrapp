@@ -11,6 +11,7 @@
     <packaging>jar</packaging>
     <artifactId>forecastJPA</artifactId>
 
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
         <!--<dependency>-->

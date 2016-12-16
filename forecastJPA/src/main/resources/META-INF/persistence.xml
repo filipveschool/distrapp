@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-    <!--<persistence-unit name="BeUcll" transaction-type="RESOURCE_LOCAL">-->
+
 
     <!-- The first persistence unit is used by Java EE clients (like session beans) -->
     <persistence-unit name="BeUcll" transaction-type="JTA">
@@ -22,32 +25,32 @@
         </properties>
     </persistence-unit>
 
-    <!-- The second unit is configured for use by Java SE clients  -->
-    <persistence-unit name="BeUcll-JSE">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>be.ucll.forecast.domain.TemperatureRasp</class>
-        <class>be.ucll.forecast.domain.HumidityRasp</class>
-        <properties>
-            <!--<property name="hibernate.dialect" value="com.mysema.query.jpa.support.ExtendedDerbyDialect" />-->
-            <!--<property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/forecast;create=true"/>-->
-            <!--<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>-->
-            <!--<property name="hibernate.connection.username" value="admin"/>-->
-            <!--<property name="hibernate.connection.password" value=""/>-->
-            <!--<property name="hibernate.archive.autodetection" value="class"/>-->
-            <!--<property name="hibernate.show_sql" value="true"/>-->
-            <!--<property name="hibernate.format_sql" value="true"/>-->
-            <!--<property name="hbm2ddl.auto" value="update"/>-->
+    <!--&lt;!&ndash; The second unit is configured for use by Java SE clients  &ndash;&gt;-->
+    <!--<persistence-unit name="BeUcll-JSE">-->
+        <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <!--<class>be.ucll.forecast.domain.TemperatureRasp</class>-->
+        <!--<class>be.ucll.forecast.domain.HumidityRasp</class>-->
+        <!--<properties>-->
+            <!--&lt;!&ndash;<property name="hibernate.dialect" value="com.mysema.query.jpa.support.ExtendedDerbyDialect" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/forecast;create=true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.username" value="admin"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.password" value=""/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.archive.autodetection" value="class"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.show_sql" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.format_sql" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hbm2ddl.auto" value="update"/>&ndash;&gt;-->
 
-            <!-- http://www.mastertheboss.com/jboss-frameworks/hibernate-jpa/jpa-configuration  -->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby:target/forecast;create=true"/>-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/forecast;create=true"/>
-            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-            <property name="javax.persistence.jdbc.user" value="admin"/>
-            <property name="javax.persistence.jdbc.password" value="test"/>
-            <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
-            <!--<property name="eclipselink.ddl-generation.output-mode" value="database"/>-->
-            <property name="eclipselink.logging.level" value="FINER"/>
+            <!--&lt;!&ndash; http://www.mastertheboss.com/jboss-frameworks/hibernate-jpa/jpa-configuration  &ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="javax.persistence.jdbc.url" value="jdbc:derby:target/forecast;create=true"/>&ndash;&gt;-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/forecast;create=true"/>-->
+            <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>-->
+            <!--<property name="javax.persistence.jdbc.user" value="admin"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value="test"/>-->
+            <!--&lt;!&ndash;<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="eclipselink.ddl-generation.output-mode" value="database"/>&ndash;&gt;-->
+            <!--<property name="eclipselink.logging.level" value="FINER"/>-->
 
-        </properties>
-    </persistence-unit>
+        <!--</properties>-->
+    <!--</persistence-unit>-->
 </persistence>
