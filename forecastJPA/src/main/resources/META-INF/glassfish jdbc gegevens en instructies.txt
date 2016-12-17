@@ -1,0 +1,38 @@
+Glassfish JDBC connection pool:
+
+1) Click NEW
+2) Pool name: kies een naam
+3) Resource Type: javax.sql.ConnectionPoolDataSource
+4) Database Driver Vendor: JavaDB
+5) Click Next
+6) Datasource Classname: org.apache.derby.jdbc.ClientConnectionPoolDataSource40
+7) Go to properties at the bottom
+8) Remove all properties except:
+    - ConnectionAttributes
+    - User
+    - DatabaseName
+    - LoginTimeout
+    - ServerName
+    - CreateDatabase
+    - PortNumber
+    - Password
+9) Vul dan de gegevens in zoals hier vermeld:
+    - ConnectionAttributes : create=true
+    - User : APP
+    - DatabaseName : naam van je database, mag je zelf kiezen
+    - LoginTimeout : 0
+    - ServerName : localhost
+    - CreateDatabase : true
+    - PortNumber : 1527
+    - Password : APP
+10) Click Finish
+11) Click op je aangemaakte JDBC Connection Pool
+12) Click op Ping in de General tab bovenaan.
+13) Als er een groene vink komt, is het in orde.
+14) Als het een error geeft, zie of je het script StartNetworkServer.bat in de payara/javadb/bin folder hebt opgestart.
+
+Glassfish JDBC resources:
+
+1) New
+2) JNDI NAME: => name of JDBC Connection pool
+3) Click Finish
