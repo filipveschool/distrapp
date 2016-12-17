@@ -10,6 +10,7 @@ import service.OpenWeatherServiceImplementation;
 
 
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -38,18 +39,32 @@ public class ApiServiceImplementation implements ApiService {
         String dateForForecast = createDate(-3);
 
         // Is er een forecast van de voorbije dagen aanwezig?
-        if ( !repository.exists(dateForForecast) ){
+        if (!repository.exists(dateForForecast)) {
             Forecast forecast = openWeatherService.getForecast(location);
             repository.save(forecast);
         }
         return repository.findAll(location);
     }
 
-    private String createDate(int pastdays){
+    private String createDate(int pastdays) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, pastdays);
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         return format.format(cal.getTime());
     }
 
+    @Schedule(second = "*/10", minute = "*", hour = "*", persistent = false)
+    public void getForecastTimerSchedule() {
+        //System.out.println("hoi allemaal timer is bezig in apiserviceimplementation klasse");
+        Forecast forecast = getForecast("Leuven");
+        System.out.println("forecast van de stad : " + forecast.getCity().getName());
+        for (Observation observation : forecast.getList()) {
+            System.out.println("Datum observation : " + observation.getDt() +
+                    " - Dag" + observation.getTemp().getDay() +
+                    " - minimum temp: " + observation.getTemp().getMin()
+                    + " - maximum temp: " + observation.getTemp().getMax());
+        }
+    }
+
 }
+

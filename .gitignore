@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+*.iml
+out
+gen
+target/
+forecast-api/target/
+forecast-domain/target/
+forecast-openweather/target/
+forecast-repository/target/
+forecastJPA/target/

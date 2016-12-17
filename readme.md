@@ -1,4 +1,11 @@
 
+##Module forecast-api
+
+Gebruikt de maven plugins:
+
+- jersey
+
+
 ## Beveiliging
 
 http://mvnrepository.com/artifact/org.mindrot/jbcrypt/0.4-atlassian-1
