@@ -38,11 +38,17 @@
         <!-- testing -->
         <junit.version>4.12</junit.version>
 
+        <!-- jwt -->
+        <jwt.version>0.7.0</jwt.version>
+
+        <commons.version>3.5</commons.version>
+
     </properties>
 
     <!-- Output to pom format -->
     <packaging>pom</packaging>
     <dependencies>
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -72,14 +78,6 @@
             <version>${javaee.api.version}</version>
         </dependency>
 
-
-
-        <!-- zet ze voorlopig hier omdat ik niet weet in welke module ze thuishoren -->
-        <dependency>
-            <groupId>org.mindrot</groupId>
-            <artifactId>jbcrypt</artifactId>
-            <version>${jbcrypt.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>javax</groupId>

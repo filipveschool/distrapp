@@ -15,35 +15,41 @@ import java.time.LocalDateTime;
  */
 
 @Entity
-@Table (name = "users")
-@JsonIgnoreProperties ({"id"})
+@Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "User.getByUsername",
+                query = "SELECT u from User u WHERE u.userName= :userName"),
+        @NamedQuery(name = "User.getAll",
+                query = "SELECT u from User u")
+})
+@JsonIgnoreProperties({"id"})
 public class User {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @NotBlank (message = "{NotBlank.User.userName}")
-    @Column (name = "name", unique = true)
+    @NotBlank(message = "{NotBlank.User.userName}")
+    @Column(name = "name", unique = true)
     private String userName;
 
-    @NotBlank (message = "{NotBlank.User.password}")
-    @Column (name = "password")
+    @NotBlank(message = "{NotBlank.User.password}")
+    @Column(name = "password")
     private String password;
 
-    @NotNull (message = "NotNull.User.status")
-    @Column (name = "status")
-    @Enumerated (EnumType.STRING)
+    @NotNull(message = "NotNull.User.status")
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
 
     public User() {
 
     }
 
-    public User( String username, String passwordNotEncrypted ) {
-        setUserName ( username );
-        setPassword ( passwordNotEncrypted );
-        setStatus ( UserStatus.ACTIVE );
+    public User(String username, String passwordNotEncrypted) {
+        setUserName(username);
+        setPassword(passwordNotEncrypted);
+        setStatus(UserStatus.ACTIVE);
     }
 
     @JsonIgnore
@@ -51,7 +57,7 @@ public class User {
         return id;
     }
 
-    public void setId( Integer id ) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,7 +65,7 @@ public class User {
         return userName;
     }
 
-    public void setUserName( String userName ) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -67,20 +73,20 @@ public class User {
         return password;
     }
 
-    public void setPassword( String passwordNotEncrypted ) {
-        String salt = BCrypt.gensalt (12);
-        this.password = BCrypt.hashpw ( passwordNotEncrypted, salt );
+    public void setPassword(String passwordNotEncrypted) {
+        String salt = BCrypt.gensalt(12);
+        this.password = BCrypt.hashpw(passwordNotEncrypted, salt);
     }
 
-    public boolean passwordEqualsEncryptedPassword(String passwordNotEncrypted){
-        return BCrypt.checkpw ( passwordNotEncrypted, password );
+    public boolean passwordEqualsEncryptedPassword(String passwordNotEncrypted) {
+        return BCrypt.checkpw(passwordNotEncrypted, password);
     }
 
     public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus( UserStatus status ) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 }

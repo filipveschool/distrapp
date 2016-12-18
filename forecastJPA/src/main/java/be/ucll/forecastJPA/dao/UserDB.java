@@ -5,6 +5,7 @@ import be.ucll.forecastJPA.exception.DBException;
 
 import javax.ejb.Remote;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by filipve on 16/12/2016.
@@ -22,6 +23,6 @@ public interface UserDB {
 
     void removeUser( User user );
 
-    Collection<User> getAllUsers() throws DBException;
+    List<User> getAllUsers() throws DBException;
 
 }

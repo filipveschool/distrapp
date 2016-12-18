@@ -26,4 +26,10 @@ public interface HumidityRaspDB {
 
     List<HumidityRasp> getAllHumiditys() throws DBException;
 
+    List<HumidityRasp> getHumiditysBeforeDate(LocalDateTime dateTime);
+
+    List<HumidityRasp> getHumiditysAfterDate(LocalDateTime dateTime);
+
+    List<HumidityRasp> getHumiditysOfDate(LocalDateTime dateTime);
+
 }

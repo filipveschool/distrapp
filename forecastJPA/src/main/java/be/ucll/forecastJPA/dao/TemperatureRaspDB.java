@@ -5,6 +5,7 @@ import be.ucll.forecastJPA.exception.DBException;
 
 import javax.ejb.Remote;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -13,15 +14,21 @@ import java.util.List;
 @Remote
 public interface TemperatureRaspDB {
 
-    TemperatureRasp getById( Integer id );
+    TemperatureRasp getById(Integer id);
 
-    TemperatureRasp getByDateTime( LocalDateTime dateTime ) throws DBException;
+    TemperatureRasp getByDateTime(LocalDateTime dateTime) throws DBException;
 
-    void addTemperature( double temperatureData );
+    void addTemperature(double temperatureData);
 
-    void updateTemperature( TemperatureRasp temperatureRasp );
+    void updateTemperature(TemperatureRasp temperatureRasp);
 
-    void removeById( Integer id );
+    void removeById(Integer id);
 
     List<TemperatureRasp> getAllTemperatures() throws DBException;
+
+    List<TemperatureRasp> getTemperaturesBeforeDate(LocalDateTime dateTime);
+
+    List<TemperatureRasp> getTemperaturesAfterDate(LocalDateTime dateTime);
+
+    List<TemperatureRasp> getTemperaturesOfDate(LocalDateTime dateTime);
 }

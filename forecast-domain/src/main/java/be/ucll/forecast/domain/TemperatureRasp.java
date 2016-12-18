@@ -15,22 +15,30 @@ import java.time.LocalDateTime;
  * Zodat we hierop ORM(=Object Relational Mapping) kunnen toepassen.
  */
 @Entity
-//@NamedQueries ({
-//        @NamedQuery (name = "Temperature.getAllTemperatures",
-//                query = "select t from Temperature t")
-//})
-@Table (name = "TEMPERATURES")
+@NamedQueries({
+        @NamedQuery(name = "Temperature.getAll",
+                query = "select t from TemperatureRasp t"),
+        @NamedQuery(name = "Temperature.getByDateTime",
+                query = "select t from TemperatureRasp t where t.dateTime= :dateTime"),
+        @NamedQuery(name = "Temperature.findById",
+                query = "select t from TemperatureRasp t where t.id= :id"),
+        @NamedQuery(name = "Temperature.getTemperaturesBeforeDate",
+        query = "select t from TemperatureRasp t where t.dateTime < :dateTime"),
+        @NamedQuery(name = "Temperature.getTemperaturesAfterDate",
+                query = "select t from TemperatureRasp t where t.dateTime > :dateTime")
+})
+@Table(name = "TEMPERATURES")
 public class TemperatureRasp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull (message = "{NotNull.Temperature.datetime}")
-    @Column (name = "dateTime", unique = true)
+    @NotNull(message = "{NotNull.Temperature.datetime}")
+    @Column(name = "dateTime", unique = true)
     private LocalDateTime dateTime;
 
     //@Column (name = "dayofweek")
@@ -38,34 +46,34 @@ public class TemperatureRasp implements Serializable {
 
     //private double
 
-    @Column (name = "minimumtemperature")
+    @Column(name = "minimumtemperature")
     private double minTemp;
 
-    @Column (name = "maximumtemperature")
+    @Column(name = "maximumtemperature")
     private double maxTemp;
 
-    @Column (name = "tempdata")
+    @Column(name = "tempdata")
     private double tempData;
 
     public TemperatureRasp() {
 
     }
 
-    public TemperatureRasp( double tempData ) {
-        setDateTime ( LocalDateTime.now () );
-        setTempData ( tempData );
+    public TemperatureRasp(double tempData) {
+        setDateTime(LocalDateTime.now());
+        setTempData(tempData);
     }
 
-    public TemperatureRasp( double tempData, LocalDateTime dateTime ) {
-        setDateTime ( dateTime );
-        setTempData ( tempData );
+    public TemperatureRasp(double tempData, LocalDateTime dateTime) {
+        setDateTime(dateTime);
+        setTempData(tempData);
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId( Integer id ) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -73,7 +81,7 @@ public class TemperatureRasp implements Serializable {
         return dateTime;
     }
 
-    public void setDateTime( LocalDateTime dateTime ) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -89,7 +97,7 @@ public class TemperatureRasp implements Serializable {
         return minTemp;
     }
 
-    public void setMinTemp( double minTemp ) {
+    public void setMinTemp(double minTemp) {
         this.minTemp = minTemp;
     }
 
@@ -97,7 +105,7 @@ public class TemperatureRasp implements Serializable {
         return maxTemp;
     }
 
-    public void setMaxTemp( double maxTemp ) {
+    public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
     }
 
@@ -105,7 +113,7 @@ public class TemperatureRasp implements Serializable {
         return tempData;
     }
 
-    public void setTempData( double tempData ) {
+    public void setTempData(double tempData) {
         this.tempData = tempData;
     }
 

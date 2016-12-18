@@ -2,6 +2,7 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
     <persistence-unit name="BeUcll" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
         <!--<jta-data-source>jdbc/__default</jta-data-source>-->
         <!--<jta-data-source>jdbc/forecast</jta-data-source>-->
@@ -14,6 +15,11 @@
             <!--<property name="eclipselink.deploy-on-startup" value="true"/>-->
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
+            <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/data-script.sql"/>
+            <!--<property name="javax.persistence.sql-load-script-source" value="data-script.sql"/>-->
+
         </properties>
     </persistence-unit>
 

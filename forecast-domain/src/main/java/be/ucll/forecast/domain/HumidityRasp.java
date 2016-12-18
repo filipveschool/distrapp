@@ -12,38 +12,55 @@ import java.time.LocalDateTime;
  */
 
 @Entity
-@Table (name = "humiditys")
+@NamedQueries({
+        @NamedQuery(name = "Humidity.getAll",
+                query = "select h from HumidityRasp h"),
+        @NamedQuery(name = "Humidity.getByDateTime",
+                query = "select h from HumidityRasp h where h.dateTime= :dateTime"),
+        @NamedQuery(name = "Humidity.findById",
+                query = "select h from HumidityRasp h where h.id= :id"),
+        @NamedQuery(name = "Humidity.getHumiditysBeforeDate",
+                query = "select h from HumidityRasp h where h.dateTime < :dateTime"),
+        @NamedQuery(name = "Humidity.getHumiditysAfterDate",
+                query = "select h from HumidityRasp h where h.dateTime > :dateTime")
+//        ,
+//        @NamedQuery(
+//                name = "Humidity.getHumiditysOfDate",
+//                query = "select h from HumidityRasp h" +
+//                        "where FUNCTION('MONTH',h.dateTime) = '12' ")
+})
+@Table(name = "humiditys")
 public class HumidityRasp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull (message = "{NotNull.Humidity.datetime}")
-    @Column (name = "dateTime", unique = true)
+    @NotNull(message = "{NotNull.Humidity.datetime}")
+    @Column(name = "dateTime", unique = true)
     private LocalDateTime dateTime;
 
 
-    @Min (value = 0, message = "{Min.Humidity.data}")
-    @Max (value = 100, message = "{Max.Humidity.data}")
-    @Column (name = "humidity")
+    @Min(value = 0, message = "{Min.Humidity.data}")
+    @Max(value = 100, message = "{Max.Humidity.data}")
+    @Column(name = "humidity")
     private double humidityData;
 
     public HumidityRasp() {
 
     }
 
-    public HumidityRasp( double humidityData ) {
-    setDateTime ( LocalDateTime.now() );
-    setHumidityData ( humidityData );
+    public HumidityRasp(double humidityData) {
+        setDateTime(LocalDateTime.now());
+        setHumidityData(humidityData);
     }
 
-    public HumidityRasp( double humidityData, LocalDateTime dateTime ) {
-        setDateTime ( dateTime );
-        setHumidityData ( humidityData );
+    public HumidityRasp(double humidityData, LocalDateTime dateTime) {
+        setDateTime(dateTime);
+        setHumidityData(humidityData);
     }
 
 
@@ -51,7 +68,7 @@ public class HumidityRasp implements Serializable {
         return id;
     }
 
-    public void setId( Integer id ) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,7 +76,7 @@ public class HumidityRasp implements Serializable {
         return dateTime;
     }
 
-    public void setDateTime( LocalDateTime dateTime ) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -67,7 +84,7 @@ public class HumidityRasp implements Serializable {
         return humidityData;
     }
 
-    public void setHumidityData( double humidityData ) {
+    public void setHumidityData(double humidityData) {
         this.humidityData = humidityData;
     }
 }
