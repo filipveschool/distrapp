@@ -4,13 +4,19 @@ import be.ucll.forecast.api.generator.KeyGenerator;
 import be.ucll.forecast.api.generator.PasswordHashGenerator;
 import io.jsonwebtoken.Jwts;
 
+import javax.annotation.Priority;
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
+import java.security.Key;
+import java.util.logging.Logger;
 
 /**
  * Created by filip on 18/12/2016.
@@ -18,6 +24,7 @@ import java.io.IOException;
 
 @Provider
 @JWTSecuredFilter
+@Priority(Priorities.AUTHENTICATION)
 public class JWTSecuredFilterImplementation implements ContainerRequestFilter {
 
     @EJB
@@ -25,6 +32,9 @@ public class JWTSecuredFilterImplementation implements ContainerRequestFilter {
 
     @EJB
     private KeyGenerator keyGenerator;
+
+    //@EJB
+    private Logger logger;
 
     /**
      * Filter method called before a request has been dispatched to a resource.
@@ -48,16 +58,28 @@ public class JWTSecuredFilterImplementation implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
 
-        //TODO nog comments verwijderen waar nodig zoals de lijn hieronder
-        //        request.setAttribute("hash", generator.generatePBKDF2Hash("veryComplexPassword"));
+        // Get the HTTP Authorization header from the request
+        String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
+        logger.info("#### authorizationheader : " + authorizationHeader);
+
+        // Check if the HTTP Authorization header is present and formatted correctly
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            logger.severe("#### invalid authorizationHeader : " + authorizationHeader);
+            throw new NotAuthorizedException("Authorization header must be provided");
+        }
+
+        // Extract the token from the HTTP Authorization header
+        String token = authorizationHeader.substring("Bearer".length()).trim();
+
+
         try {
-            String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-            String token = authorizationHeader.substring("Bearer".length()).trim();
-            Jwts.parser().setSigningKey(keyGenerator.generateJWTSigningKey()).parseClaimsJws(token);
+            // Validate the token
+            Key key = keyGenerator.generateKey();
+            Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+            logger.info("#### valid token : " + token);
         } catch (Exception ex) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
-                    .entity("HTTP 401 Unauthorized")
-                    .build());
+            logger.severe("#### invalid token : " + token);
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("HTTP 401 Unauthorized").build());
         }
     }
 }

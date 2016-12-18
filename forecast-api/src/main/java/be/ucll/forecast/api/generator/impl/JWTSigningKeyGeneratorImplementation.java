@@ -13,8 +13,8 @@ import java.security.Key;
 public class JWTSigningKeyGeneratorImplementation implements KeyGenerator {
 
     @Override
-    public Key generateJWTSigningKey() {
-        String JWTSigningKeyStringOrigineel = "jwtkeystring";
+    public Key generateKey() {
+        String JWTSigningKeyStringOrigineel = "simplekey";
         return new SecretKeySpec(JWTSigningKeyStringOrigineel.getBytes(), 0, JWTSigningKeyStringOrigineel.length(), "DES");
     }
 }

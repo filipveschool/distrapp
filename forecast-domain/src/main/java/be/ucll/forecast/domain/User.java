@@ -8,6 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -23,10 +24,12 @@ import java.time.LocalDateTime;
                 query = "SELECT u from User u")
 })
 @JsonIgnoreProperties(value = {"id"}, ignoreUnknown = true)
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank(message = "{NotBlank.User.userName}")
@@ -48,8 +51,8 @@ public class User {
 
     public User(String username, String passwordNotEncrypted) {
         setUserName(username);
-        //setPassword(passwordNotEncrypted);
-        encryptPassword(passwordNotEncrypted);
+        setPassword(passwordNotEncrypted);
+        //encryptPassword(passwordNotEncrypted);
         setStatus(UserStatus.ACTIVE);
     }
 
@@ -75,12 +78,16 @@ public class User {
     }
 
     public void setPassword(String passwordNotEncrypted) {
-        this.password = passwordNotEncrypted;
+
+        //this.password = passwordNotEncrypted;
+        String salt = BCrypt.gensalt(12);
+        this.password = BCrypt.hashpw(passwordNotEncrypted, salt);
     }
 
     public void encryptPassword(String passwordNotEncrypted) {
         String salt = BCrypt.gensalt(12);
         this.password = BCrypt.hashpw(passwordNotEncrypted, salt);
+
     }
 
     public boolean passwordEqualsEncryptedPassword(String passwordNotEncrypted) {

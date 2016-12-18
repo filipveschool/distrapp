@@ -12,6 +12,7 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.Entity;
+import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -99,17 +100,39 @@ public class WeatherJPAController {
         return temperatureDAO.getAllTemperatures();
     }
 
-//    @GET
-//    @Path("/temperatures")
+    //    @GET
+//    @Path("/temperaturesbeforedate")
 //    public List<TemperatureRasp> getTemperaturesBeforeDate() {
 //        return temperatureDAO.getTemperaturesBeforeDate();
 //    }
 //
-//    @GET
-//    @Path("/temperatures")
-//    public List<TemperatureRasp> getTemperaturesAfterDate() {
-//        return temperatureDAO.getTemperaturesAfterDate();
-//    }
+    @GET
+    @Path("/temperaturesafterdates/{month}/{day}/{year}")
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthYearDate(@QueryParam("day") Integer day,
+                                                                      @QueryParam("month") Integer month,
+                                                                      @QueryParam("year") Integer year) {
+        return temperatureDAO.getTemperaturesAfterDayMonthYearDate(day, month, year);
+    }
+
+    @GET
+    @Path("/temperaturesafterdates/{month}/{year}")
+    public List<TemperatureRasp> getTemperaturesAfterMonthYearDate(@QueryParam("month") Integer month,
+                                                                   @QueryParam("year") Integer year) {
+        return temperatureDAO.getTemperaturesAfterMonthYearDate(month, year);
+    }
+
+    @GET
+    @Path("/temperaturesafterdates/{month}/{day}")
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthDate(@QueryParam("day") Integer day,
+                                                                  @QueryParam("month") Integer month) {
+        return temperatureDAO.getTemperaturesAfterDayMonthDate(day, month);
+    }
+
+    @GET
+    @Path("/temperaturesafterdates/{day}")
+    public List<TemperatureRasp> getTemperaturesAfterDayDate(@QueryParam("day") Integer day) {
+        return temperatureDAO.getTemperaturesAfterDayDate(day);
+    }
 
     @GET
     @Path("/temperatures/{month}/{day}")
@@ -126,11 +149,46 @@ public class WeatherJPAController {
     //----------------------------------------------------------------------------------------------------------
 
     @GET
-    @Path("/allhumiditysofmonth")
-    public List<HumidityRasp> getAllHumiditysofMonth() {
+    @Path("/humiditys/{month}")
+    public List<HumidityRasp> getAllHumiditysofMonth(@PathParam("month") Integer month) {
 
-        return humidityDAO.getHumiditysOfDate(LocalDateTime.now());
+        return humidityDAO.getHumiditysOfMonth(month);
     }
+
+    @GET
+    @Path("/humiditys/{month}/{day}")
+    public List<HumidityRasp> getHumiditysOfDayAndMonth(@PathParam("month") Integer month, @PathParam("day") Integer day) {
+        return humidityDAO.getHumiditysOfDayAndMonth(month, day);
+    }
+
+    @GET
+    @Path("/humidityssafterdates/{month}/{day}/{year}")
+    public List<HumidityRasp> getHumiditysAfterDayMonthYearDate(@QueryParam("day") Integer day,
+                                                                   @QueryParam("month") Integer month,
+                                                                   @QueryParam("year") Integer year) {
+        return humidityDAO.getHumiditysAfterDayMonthYearDate(day, month, year);
+    }
+
+    @GET
+    @Path("/humidityssafterdates/{month}/{year}")
+    public List<HumidityRasp> getHumiditysAfterMonthYearDate(@QueryParam("month") Integer month,
+                                                                @QueryParam("year") Integer year) {
+        return humidityDAO.getHumiditysAfterMonthYearDate(month, year);
+    }
+
+    @GET
+    @Path("/humidityssafterdates/{month}/{day}")
+    public List<HumidityRasp> getHumiditysAfterDayMonthDate(@QueryParam("day") Integer day,
+                                                               @QueryParam("month") Integer month) {
+        return humidityDAO.getHumiditysAfterDayMonthDate(day, month);
+    }
+
+    @GET
+    @Path("/humidityssafterdates/{month}/{day}/{year}")
+    public List<HumidityRasp> getHumiditysAfterDayDate(@QueryParam("day") Integer day) {
+        return humidityDAO.getHumiditysAfterDayDate(day);
+    }
+
 
     /************************************************************************
      *
@@ -146,30 +204,12 @@ public class WeatherJPAController {
         return temperatureDAO.getById(id);
     }
 
-
-//    //TODO werkt niet
-//    @GET
-//    @Path("/temperature/{datetime}")
-//    public TemperatureRasp getTemperatureByDateTime(@PathParam("id") Integer id) {
-//        return temperatureDAO.getByDateTime(id);
-//    }
-
-    //----------------------------------------------------------------------------------------------------------
-
-
-    /************************************************************
-     *
-     * Hier komen alle functies voor objecten toe te voegen.
-     *
-     ************************************************************
-     ************************************************************/
-
-    //TODO werkt niet
-//    @POST
-//    @Path("/addtemperature")
-//    public void addTemperature() {
-//        temperatureDAO.addTemperature();
-//    }
+    @GET
+    @Path("/humidity/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HumidityRasp getHumidityById(@PathParam("id") Integer id) {
+        return humidityDAO.getById(id);
+    }
 
     //----------------------------------------------------------------------------------------------------------
 
@@ -187,26 +227,12 @@ public class WeatherJPAController {
         temperatureDAO.removeById(id);
     }
 
-    //TODO werkt niet
-    @DELETE
-    @Path("/temperature/{id}")
-    public void removeTemperatureByDateTime(@PathParam("id") Integer id) {
-        //temperatureDAO.removeTemperatureByLocalDateTime(id);
-    }
-
     //----------------------------------------------------------------------------------------------------------
 
     @DELETE
     @Path("/humidity/{id}")
     public void removeHumidity(@PathParam("id") Integer id) {
         humidityDAO.removeById(id);
-    }
-
-    //TODO werkt niet
-    @DELETE
-    @Path("/temperature/{id}")
-    public void removeHumidityByDateTime(@PathParam("id") Integer id) {
-        //humidityDAO.removeHumidityByLocalDateTime(id);
     }
 
 

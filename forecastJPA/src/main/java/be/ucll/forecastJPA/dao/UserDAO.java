@@ -71,13 +71,23 @@ public class UserDAO implements UserDB {
      * @throws DBException Throws an Exception if transaction failed
      */
     @Override
-    public void addUser(String userName, String passwordNotEncrypted) throws DBException {
+    public void addUserByUsernameAndPassword(String userName, String passwordNotEncrypted) throws DBException {
         User newUser = new User(userName, passwordNotEncrypted);
         try {
             em.persist(newUser);
             em.flush();
         } catch (DBException exception) {
             throw new DBException("User object couldn't be added to the database:" + newUser, exception);
+        }
+    }
+
+    @Override
+    public void addUser(User user) {
+        try {
+            em.persist(user);
+            em.flush();
+        } catch (DBException exception) {
+            throw new DBException("User object couldn't be added to the database:" + user, exception);
         }
     }
 

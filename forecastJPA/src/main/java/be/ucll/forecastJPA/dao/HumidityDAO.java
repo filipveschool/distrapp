@@ -1,7 +1,6 @@
 package be.ucll.forecastJPA.dao;
 
 import be.ucll.forecast.domain.HumidityRasp;
-import be.ucll.forecast.domain.TemperatureRasp;
 import be.ucll.forecast.domain.User;
 import be.ucll.forecastJPA.exception.DBException;
 import org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter;
@@ -92,25 +91,70 @@ public class HumidityDAO implements HumidityRaspDB {
     }
 
     @Override
-    public List<HumidityRasp> getHumiditysAfterDate(LocalDateTime dateTime) {
-        return em.createNamedQuery("Humidity.getHumiditysAfterDate", HumidityRasp.class)
-                .setParameter("dateTime", dateTime)
-                .getResultList();
+    public List<HumidityRasp> getHumiditysAfterDayMonthYearDate(Integer day, Integer month, Integer year) {
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
+                "where function('YEAR',h.dateTime) >= :year and function('MONTH',h.dateTime) >= :month  " +
+                "and function('DAY',h.dateTime) > :day ", HumidityRasp.class)
+                .setParameter("day", day)
+                .setParameter("year", year)
+                .setParameter("month", month);
+        return humidityRaspTypedQuery.getResultList();
     }
 
     @Override
-    public List<HumidityRasp> getHumiditysOfDate(LocalDateTime dateTime) {
-
-        //TypedQuery<HumidityRasp> hu = em.createNativeQuery("select h from HumidityRasp")
-        int monthf = dateTime.getMonthValue();
-
-
+    public List<HumidityRasp> getHumiditysAfterMonthYearDate(Integer month, Integer year) {
         TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
-                "where function('MONTH',h.dateTime) = :monthvalue", HumidityRasp.class);
+                "where function('YEAR',h.dateTime) >= :year and function('MONTH',h.dateTime) > :month  ", HumidityRasp.class)
+                .setParameter("year", year)
+                .setParameter("month", month);
+        return humidityRaspTypedQuery.getResultList();
+    }
 
+    @Override
+    public List<HumidityRasp> getHumiditysAfterDayMonthDate(Integer day, Integer month) {
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
+                "where function('DAY',h.dateTime) > :day and function('MONTH',h.dateTime) >= :month  ", HumidityRasp.class)
+                .setParameter("day", day)
+                .setParameter("month", month);
+        return humidityRaspTypedQuery.getResultList();
+    }
 
+    @Override
+    public List<HumidityRasp> getHumiditysAfterDayDate(Integer day) {
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('DAY',h.dateTime) > :dayvalue ", HumidityRasp.class)
+                .setParameter("dayvalue", day);
+        return humidityRaspTypedQuery.getResultList();
+    }
 
+    @Override
+    public List<HumidityRasp> getHumiditysOfLocalDateTime(LocalDateTime dateTime) {
+
+        int monthvalue = dateTime.getMonthValue();
+        int dayvalue = dateTime.getDayOfMonth();
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
+                "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", HumidityRasp.class)
+                .setParameter("monthvalue", monthvalue)
+                .setParameter("dayvalue", dayvalue);
         return humidityRaspTypedQuery.getResultList();
 
+    }
+
+    @Override
+    public List<HumidityRasp> getHumiditysOfDayAndMonth(Integer monthvalue, Integer dayvalue) {
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
+                "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", HumidityRasp.class)
+                .setParameter("monthvalue", monthvalue)
+                .setParameter("dayvalue", dayvalue);
+
+        return humidityRaspTypedQuery.getResultList();
+    }
+
+    @Override
+    public List<HumidityRasp> getHumiditysOfMonth(Integer monthvalue) {
+        TypedQuery<HumidityRasp> humidityRaspTypedQuery = em.createQuery("select h from HumidityRasp h " +
+                "where function('MONTH',h.dateTime) = :monthvalue", HumidityRasp.class)
+                .setParameter("monthvalue", monthvalue);
+        return humidityRaspTypedQuery.getResultList();
     }
 }

@@ -17,7 +17,9 @@ public interface UserDB {
 
     User getByUserName(String userName) throws DBException;
 
-    void addUser( String userName, String passwordNotEncrypted );
+    void addUserByUsernameAndPassword( String userName, String passwordNotEncrypted );
+
+    void addUser( User user);
 
     void updateUser( User user );
 

@@ -6,6 +6,7 @@ import sun.security.util.Password;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -18,7 +19,8 @@ import java.util.logging.Logger;
 /**
  * Created by filip on 18/12/2016.
  */
-@ApplicationScoped
+//@ApplicationScoped
+@Stateless
 public class PasswordHashGeneratorImplementation implements PasswordHashGenerator {
 
     @Override

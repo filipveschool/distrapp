@@ -29,7 +29,13 @@ public interface TemperatureRaspDB {
 
     List<TemperatureRasp> getTemperaturesBeforeDate(LocalDateTime dateTime);
 
-    List<TemperatureRasp> getTemperaturesAfterDate(LocalDateTime dateTime);
+    List<TemperatureRasp> getTemperaturesAfterDayMonthYearDate(Integer day, Integer month, Integer year);
+
+    List<TemperatureRasp> getTemperaturesAfterMonthYearDate(Integer month, Integer year);
+
+    List<TemperatureRasp> getTemperaturesAfterDayMonthDate(Integer day, Integer month);
+
+    List<TemperatureRasp> getTemperaturesAfterDayDate(Integer day);
 
     List<TemperatureRasp> getTemperaturesOfLocalDateTime(LocalDateTime localDateTime);
 

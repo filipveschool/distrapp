@@ -28,8 +28,18 @@ public interface HumidityRaspDB {
 
     List<HumidityRasp> getHumiditysBeforeDate(LocalDateTime dateTime);
 
-    List<HumidityRasp> getHumiditysAfterDate(LocalDateTime dateTime);
+    List<HumidityRasp> getHumiditysAfterDayMonthYearDate(Integer day, Integer month, Integer year);
 
-    List<HumidityRasp> getHumiditysOfDate(LocalDateTime dateTime);
+    List<HumidityRasp> getHumiditysAfterMonthYearDate(Integer month, Integer year);
+
+    List<HumidityRasp> getHumiditysAfterDayMonthDate(Integer day, Integer month);
+
+    List<HumidityRasp> getHumiditysAfterDayDate(Integer day);
+
+    List<HumidityRasp> getHumiditysOfLocalDateTime(LocalDateTime localDateTime);
+
+    List<HumidityRasp> getHumiditysOfDayAndMonth(Integer monthvalue, Integer dayvalue);
+
+    List<HumidityRasp> getHumiditysOfMonth(Integer monthvalue);
 
 }

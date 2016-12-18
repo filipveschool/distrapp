@@ -89,11 +89,42 @@ public class TemperatureDAO implements TemperatureRaspDB {
     }
 
     @Override
-    public List<TemperatureRasp> getTemperaturesAfterDate(LocalDateTime dateTime) {
-        return em.createNamedQuery("Temperature.getTemperaturesAfterDate", TemperatureRasp.class)
-                .setParameter("dateTime", dateTime)
-                .getResultList();
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthYearDate(Integer day, Integer month, Integer year) {
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('YEAR',h.dateTime) >= :year and function('MONTH',h.dateTime) >= :month  and function('DAY',h.dateTime) > :day ", TemperatureRasp.class)
+                .setParameter("day", day)
+                .setParameter("year", year)
+                .setParameter("month", month);
+        return temperatureRaspTypedQuery.getResultList();
     }
+
+    @Override
+    public List<TemperatureRasp> getTemperaturesAfterMonthYearDate(Integer month, Integer year) {
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('YEAR',h.dateTime) >= :year and function('MONTH',h.dateTime) > :month  ", TemperatureRasp.class)
+                .setParameter("year", year)
+                .setParameter("month", month);
+        return temperatureRaspTypedQuery.getResultList();
+    }
+
+    @Override
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthDate(Integer day, Integer month) {
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('DAY',h.dateTime) > :day and function('MONTH',h.dateTime) >= :month  ", TemperatureRasp.class)
+                .setParameter("day", day)
+                .setParameter("month", month);
+        return temperatureRaspTypedQuery.getResultList();
+    }
+
+    @Override
+    public List<TemperatureRasp> getTemperaturesAfterDayDate(Integer dayvalue) {
+
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('DAY',h.dateTime) > :dayvalue ", TemperatureRasp.class)
+                .setParameter("dayvalue", dayvalue);
+        return temperatureRaspTypedQuery.getResultList();
+    }
+
 
     @Override
     public List<TemperatureRasp> getTemperaturesOfLocalDateTime(LocalDateTime dateTime) {
@@ -125,7 +156,7 @@ public class TemperatureDAO implements TemperatureRaspDB {
     public List<TemperatureRasp> getTemperaturesOfMonth(Integer monthvalue) {
 
         TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
-                "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", TemperatureRasp.class)
+                "where function('MONTH',h.dateTime) = :monthvalue", TemperatureRasp.class)
                 .setParameter("monthvalue", monthvalue);
         return temperatureRaspTypedQuery.getResultList();
 

@@ -7,6 +7,6 @@ import java.security.Key;
  */
 public interface KeyGenerator {
 
-    Key generateJWTSigningKey();
+    Key generateKey();
 
 }
