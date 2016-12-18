@@ -99,17 +99,17 @@ public class WeatherJPAController {
         return temperatureDAO.getAllTemperatures();
     }
 
-    @GET
-    @Path("/temperatures")
-    public List<TemperatureRasp> getTemperaturesBeforeDate() {
-        return temperatureDAO.getTemperaturesBeforeDate();
-    }
-
-    @GET
-    @Path("/temperatures")
-    public List<TemperatureRasp> getTemperaturesAfterDate() {
-        return temperatureDAO.getTemperaturesAfterDate();
-    }
+//    @GET
+//    @Path("/temperatures")
+//    public List<TemperatureRasp> getTemperaturesBeforeDate() {
+//        return temperatureDAO.getTemperaturesBeforeDate();
+//    }
+//
+//    @GET
+//    @Path("/temperatures")
+//    public List<TemperatureRasp> getTemperaturesAfterDate() {
+//        return temperatureDAO.getTemperaturesAfterDate();
+//    }
 
     @GET
     @Path("/temperatures/{month}/{day}")
@@ -147,12 +147,12 @@ public class WeatherJPAController {
     }
 
 
-    //TODO werkt niet
-    @GET
-    @Path("/temperature/{datetime}")
-    public TemperatureRasp getTemperatureByDateTime(@PathParam("id") Integer id) {
-        return temperatureDAO.getByDateTime(id);
-    }
+//    //TODO werkt niet
+//    @GET
+//    @Path("/temperature/{datetime}")
+//    public TemperatureRasp getTemperatureByDateTime(@PathParam("id") Integer id) {
+//        return temperatureDAO.getByDateTime(id);
+//    }
 
     //----------------------------------------------------------------------------------------------------------
 
@@ -165,11 +165,11 @@ public class WeatherJPAController {
      ************************************************************/
 
     //TODO werkt niet
-    @POST
-    @Path("/addtemperature")
-    public void addTemperature() {
-        temperatureDAO.addTemperature();
-    }
+//    @POST
+//    @Path("/addtemperature")
+//    public void addTemperature() {
+//        temperatureDAO.addTemperature();
+//    }
 
     //----------------------------------------------------------------------------------------------------------
 

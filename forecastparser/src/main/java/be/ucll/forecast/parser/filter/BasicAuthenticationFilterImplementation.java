@@ -24,9 +24,6 @@ import java.io.IOException;
 @Priority(Priorities.AUTHENTICATION)
 public class BasicAuthenticationFilterImplementation implements ContainerRequestFilter, ContainerResponseFilter {
 
-    //Dit is het path zoals in de opgave staat voor de weerdata op te halen op de raspberry PI.
-    private static final String RASPBERRY_PYTHON_PATH = "/projects/readDHT22.py";
-
     //Dit is de username voor de opgave van Basic Authentication
     private static final String username_authentication = "FilipTomRaspberryPi";
 

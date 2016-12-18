@@ -1,5 +1,8 @@
 package be.ucll.forecast.parser.controller;
 
+import be.ucll.forecast.domain.WeatherRasp;
+import be.ucll.forecast.parser.datareader.ReaderFactory;
+import be.ucll.forecast.parser.filter.BasicAuthenticationFilter;
 import be.ucll.forecast.parser.service.RaspberryService;
 
 import javax.ejb.EJB;
@@ -12,16 +15,26 @@ import javax.ws.rs.core.Response;
 /**
  * Created by filip on 18/12/2016.
  */
+@BasicAuthenticationFilter
 @Path("/data")
 public class Endpoint {
 
     @EJB
     RaspberryService raspberryService;
 
+    @EJB
+    private ReaderFactory factory;
+
+    @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public WeatherRasp getWeatherFromRaspberry() {
+        return factory.readWeatherData();
+    }
+
     @GET
     @Path("/temperature")
     @Produces(MediaType.APPLICATION_JSON)
-
     public Response getTemperature() {
         System.out.println("\n\n\nDO WE GET HERE??????\n\n\n");
         return Response.status(200).entity("Looks like you are using authentication").build();

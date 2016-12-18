@@ -55,7 +55,7 @@ public class TemperatureRasp implements Serializable {
     private double maxTemp;
 
 
-    @JsonProperty("tempdata")
+
     @Column(name = "tempdata")
     private double tempData;
 

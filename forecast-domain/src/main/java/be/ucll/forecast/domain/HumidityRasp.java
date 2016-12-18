@@ -48,7 +48,6 @@ public class HumidityRasp implements Serializable {
 
     @Min(value = 0, message = "{Min.Humidity.data}")
     @Max(value = 100, message = "{Max.Humidity.data}")
-    @JsonProperty("humidityData")
     @Column(name = "humidity")
     private double humidityData;
 

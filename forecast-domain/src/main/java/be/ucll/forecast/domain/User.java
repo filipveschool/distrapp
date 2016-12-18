@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "User.getAll",
                 query = "SELECT u from User u")
 })
-@JsonIgnoreProperties({"id"})
+@JsonIgnoreProperties(value = {"id"}, ignoreUnknown = true)
 public class User {
 
     @Id
@@ -48,7 +48,8 @@ public class User {
 
     public User(String username, String passwordNotEncrypted) {
         setUserName(username);
-        setPassword(passwordNotEncrypted);
+        //setPassword(passwordNotEncrypted);
+        encryptPassword(passwordNotEncrypted);
         setStatus(UserStatus.ACTIVE);
     }
 
@@ -74,6 +75,10 @@ public class User {
     }
 
     public void setPassword(String passwordNotEncrypted) {
+        this.password = passwordNotEncrypted;
+    }
+
+    public void encryptPassword(String passwordNotEncrypted) {
         String salt = BCrypt.gensalt(12);
         this.password = BCrypt.hashpw(passwordNotEncrypted, salt);
     }
