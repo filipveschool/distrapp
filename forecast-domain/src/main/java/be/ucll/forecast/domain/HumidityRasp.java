@@ -1,5 +1,7 @@
 package be.ucll.forecast.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -46,6 +48,7 @@ public class HumidityRasp implements Serializable {
 
     @Min(value = 0, message = "{Min.Humidity.data}")
     @Max(value = 100, message = "{Max.Humidity.data}")
+    @JsonProperty("humidityData")
     @Column(name = "humidity")
     private double humidityData;
 

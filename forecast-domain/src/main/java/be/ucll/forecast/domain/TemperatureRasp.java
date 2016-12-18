@@ -1,6 +1,8 @@
 package be.ucll.forecast.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -23,7 +25,7 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "Temperature.findById",
                 query = "select t from TemperatureRasp t where t.id= :id"),
         @NamedQuery(name = "Temperature.getTemperaturesBeforeDate",
-        query = "select t from TemperatureRasp t where t.dateTime < :dateTime"),
+                query = "select t from TemperatureRasp t where t.dateTime < :dateTime"),
         @NamedQuery(name = "Temperature.getTemperaturesAfterDate",
                 query = "select t from TemperatureRasp t where t.dateTime > :dateTime")
 })
@@ -52,6 +54,8 @@ public class TemperatureRasp implements Serializable {
     @Column(name = "maximumtemperature")
     private double maxTemp;
 
+
+    @JsonProperty("tempdata")
     @Column(name = "tempdata")
     private double tempData;
 

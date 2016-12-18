@@ -1,5 +1,7 @@
 package be.ucll.forecast.api.controller;
 
+import be.ucll.forecast.api.filters.JWTSecuredFilter;
+import be.ucll.forecast.api.generator.PasswordHashGenerator;
 import be.ucll.forecast.domain.User;
 import be.ucll.forecastJPA.dao.UserDB;
 
@@ -11,18 +13,25 @@ import java.util.List;
 /**
  * Created by filip on 18/12/2016.
  */
+@JWTSecuredFilter
 @Path("/authentication")
 public class UserController {
 
     @EJB
     private UserDB userDB;
 
+    @EJB
+    private PasswordHashGenerator generator;
+
     //@EJB
     //private
 
+
+
     @GET
     @Path(("/allusers"))
-    public List<User> getAll(){
+
+    public List<User> getAll() {
         return userDB.getAllUsers();
     }
 }

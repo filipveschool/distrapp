@@ -37,12 +37,9 @@ public class WeatherController {
         return Response.status(200).entity(apiService.getForecast(location)).build();
     }
 
-    //@GET
-    //@Produces(MediaType.APPLICATION_JSON)
-    @Schedule(second="*/5", minute="*",hour="*", persistent=false)
-    public void getForecastTimerSchedule() {
-        System.out.println("hoi allemaal timer is bezig in controller klasse");
-    }
+
+
+
 
 
 }

@@ -4,6 +4,7 @@ import be.ucll.forecast.domain.TemperatureRasp;
 import be.ucll.forecastJPA.exception.DBException;
 
 import javax.ejb.Remote;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -30,5 +31,9 @@ public interface TemperatureRaspDB {
 
     List<TemperatureRasp> getTemperaturesAfterDate(LocalDateTime dateTime);
 
-    List<TemperatureRasp> getTemperaturesOfDate(LocalDateTime dateTime);
+    List<TemperatureRasp> getTemperaturesOfLocalDateTime(LocalDateTime localDateTime);
+
+    List<TemperatureRasp> getTemperaturesOfDayAndMonth(Integer monthvalue, Integer dayvalue);
+
+    List<TemperatureRasp> getTemperaturesOfMonth(Integer monthvalue);
 }

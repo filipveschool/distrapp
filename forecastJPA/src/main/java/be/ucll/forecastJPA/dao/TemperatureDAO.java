@@ -96,29 +96,40 @@ public class TemperatureDAO implements TemperatureRaspDB {
     }
 
     @Override
-    public List<TemperatureRasp> getTemperaturesOfDate(LocalDateTime dateTime) {
-
-        //TypedQuery<TemperatureRasp> tm = em.createNativeQuery("select * from TemperatureRasp", TemperatureRasp.class);
+    public List<TemperatureRasp> getTemperaturesOfLocalDateTime(LocalDateTime dateTime) {
 
         int monthvalue = dateTime.getMonthValue();
-        int hourvalue = 1;
         int dayvalue = dateTime.getDayOfMonth();
         TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
                 "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", TemperatureRasp.class)
                 .setParameter("monthvalue", monthvalue)
                 .setParameter("dayvalue", dayvalue);
-        //.setParameter("hourvalue", hourvalue);
-        //"where function('MONTH',h.dateTime) = '12'", TemperatureRasp.class);
-        //.setParameter("monthvalue", monthvalue);
-
-        List<TemperatureRasp> tt = temperatureRaspTypedQuery.getResultList();
-        for (TemperatureRasp tf : tt) {
-            System.out.println(tf.getId() + " - " + tf.getDateTime().getMonthValue() + " - ");
-        }
-
-        return tt;
-        //return temperatureRaspTypedQuery.getResultList();
+        return temperatureRaspTypedQuery.getResultList();
 
     }
+
+
+    @Override
+    public List<TemperatureRasp> getTemperaturesOfDayAndMonth(Integer monthvalue, Integer dayvalue) {
+
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", TemperatureRasp.class)
+                .setParameter("monthvalue", monthvalue)
+                .setParameter("dayvalue", dayvalue);
+
+        return temperatureRaspTypedQuery.getResultList();
+
+    }
+
+    @Override
+    public List<TemperatureRasp> getTemperaturesOfMonth(Integer monthvalue) {
+
+        TypedQuery<TemperatureRasp> temperatureRaspTypedQuery = em.createQuery("select h from TemperatureRasp h " +
+                "where function('MONTH',h.dateTime) = :monthvalue and function('DAY',h.dateTime) = :dayvalue ", TemperatureRasp.class)
+                .setParameter("monthvalue", monthvalue);
+        return temperatureRaspTypedQuery.getResultList();
+
+    }
+
 
 }

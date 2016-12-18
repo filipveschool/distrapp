@@ -93,6 +93,7 @@
         <module>forecast-api</module>
         <module>forecast-domain</module>
         <module>forecastJPA</module>
+        <module>forecastparser</module>
     </modules>
 
     <distributionManagement>
