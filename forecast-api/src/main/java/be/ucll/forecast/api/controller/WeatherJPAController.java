@@ -108,35 +108,36 @@ public class WeatherJPAController {
 //
     @GET
     @Path("/temperaturesafterdates/{month}/{day}/{year}")
-    public List<TemperatureRasp> getTemperaturesAfterDayMonthYearDate(@QueryParam("day") Integer day,
-                                                                      @QueryParam("month") Integer month,
-                                                                      @QueryParam("year") Integer year) {
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthYearDate(@PathParam("day") Integer day,
+                                                                      @PathParam("month") Integer month,
+                                                                      @PathParam("year") Integer year) {
         return temperatureDAO.getTemperaturesAfterDayMonthYearDate(day, month, year);
     }
 
     @GET
     @Path("/temperaturesafterdates/{month}/{year}")
-    public List<TemperatureRasp> getTemperaturesAfterMonthYearDate(@QueryParam("month") Integer month,
-                                                                   @QueryParam("year") Integer year) {
+    public List<TemperatureRasp> getTemperaturesAfterMonthYearDate(@PathParam("month") Integer month,
+                                                                   @PathParam("year") Integer year) {
         return temperatureDAO.getTemperaturesAfterMonthYearDate(month, year);
     }
 
     @GET
     @Path("/temperaturesafterdates/{month}/{day}")
-    public List<TemperatureRasp> getTemperaturesAfterDayMonthDate(@QueryParam("day") Integer day,
-                                                                  @QueryParam("month") Integer month) {
+    public List<TemperatureRasp> getTemperaturesAfterDayMonthDate(@PathParam("day") Integer day,
+                                                                  @PathParam("month") Integer month) {
         return temperatureDAO.getTemperaturesAfterDayMonthDate(day, month);
     }
 
     @GET
     @Path("/temperaturesafterdates/{day}")
-    public List<TemperatureRasp> getTemperaturesAfterDayDate(@QueryParam("day") Integer day) {
+    public List<TemperatureRasp> getTemperaturesAfterDayDate(@PathParam("day") Integer day) {
         return temperatureDAO.getTemperaturesAfterDayDate(day);
     }
 
     @GET
     @Path("/temperatures/{month}/{day}")
-    public List<TemperatureRasp> getTemperaturesOfDayAndMonth(@PathParam("month") Integer month, @PathParam("day") Integer day) {
+    public List<TemperatureRasp> getTemperaturesOfDayAndMonth(@PathParam("month") Integer month,
+                                                              @PathParam("day") Integer day) {
         return temperatureDAO.getTemperaturesOfDayAndMonth(month, day);
     }
 
@@ -163,29 +164,29 @@ public class WeatherJPAController {
 
     @GET
     @Path("/humidityssafterdates/{month}/{day}/{year}")
-    public List<HumidityRasp> getHumiditysAfterDayMonthYearDate(@QueryParam("day") Integer day,
-                                                                   @QueryParam("month") Integer month,
-                                                                   @QueryParam("year") Integer year) {
+    public List<HumidityRasp> getHumiditysAfterDayMonthYearDate(@PathParam("day") Integer day,
+                                                                @PathParam("month") Integer month,
+                                                                @PathParam("year") Integer year) {
         return humidityDAO.getHumiditysAfterDayMonthYearDate(day, month, year);
     }
 
     @GET
     @Path("/humidityssafterdates/{month}/{year}")
-    public List<HumidityRasp> getHumiditysAfterMonthYearDate(@QueryParam("month") Integer month,
-                                                                @QueryParam("year") Integer year) {
+    public List<HumidityRasp> getHumiditysAfterMonthYearDate(@PathParam("month") Integer month,
+                                                             @PathParam("year") Integer year) {
         return humidityDAO.getHumiditysAfterMonthYearDate(month, year);
     }
 
     @GET
     @Path("/humidityssafterdates/{month}/{day}")
-    public List<HumidityRasp> getHumiditysAfterDayMonthDate(@QueryParam("day") Integer day,
-                                                               @QueryParam("month") Integer month) {
+    public List<HumidityRasp> getHumiditysAfterDayMonthDate(@PathParam("day") Integer day,
+                                                            @PathParam("month") Integer month) {
         return humidityDAO.getHumiditysAfterDayMonthDate(day, month);
     }
 
     @GET
     @Path("/humidityssafterdates/{month}/{day}/{year}")
-    public List<HumidityRasp> getHumiditysAfterDayDate(@QueryParam("day") Integer day) {
+    public List<HumidityRasp> getHumiditysAfterDayDate(@PathParam("day") Integer day) {
         return humidityDAO.getHumiditysAfterDayDate(day);
     }
 
