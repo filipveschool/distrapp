@@ -57,13 +57,13 @@ public class ApiServiceImplementation implements ApiService {
     public void getForecastTimerSchedule() {
         //System.out.println("hoi allemaal timer is bezig in apiserviceimplementation klasse");
         Forecast forecast = getForecast("Leuven");
-//        System.out.println("forecast van de stad : " + forecast.getCity().getName());
-//        for (Observation observation : forecast.getList()) {
-//            System.out.println("Datum observation : " + observation.getDt() +
-//                    " - Dag" + observation.getTemp().getDay() +
-//                    " - minimum temp: " + observation.getTemp().getMin()
-//                    + " - maximum temp: " + observation.getTemp().getMax());
-//        }
+        System.out.println("forecast van de stad : " + forecast.getCity().getName());
+        for (Observation observation : forecast.getList()) {
+            System.out.println("Datum observation : " + observation.getDt() +
+                    " - Dag" + observation.getTemp().getDay() +
+                    " - minimum temp: " + observation.getTemp().getMin()
+                    + " - maximum temp: " + observation.getTemp().getMax());
+        }
     }
 
 }
